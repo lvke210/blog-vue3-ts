@@ -1,3 +1,3 @@
 <template>
-  <div>cat</div>
+  <div>cat3</div>
 </template>

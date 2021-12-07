@@ -1,21 +1,31 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
-  // {
-  //   path: '/login',
-  //   component: () => import('@/views/login/index'),
-  //   hidden: true
-  // },
-  // {
-  //   path: '/404',
-  //   component: () => import('@/views/404'),
-  //   hidden: true
-  // },
+  {
+    path: "/login",
+    component: () => import("@/views/login/login.vue"),
+    meta: {
+      title: "login",
+    },
+  },
+  {
+    path: "/404",
+    component: () => import("@/views/404.vue"),
+    meta: {
+      title: "404",
+    },
+  },
   {
     path: "/",
-    name: "Home",
+    name: "Layout",
     component: () => import("@/layout/index.vue"),
+    redirect: "/home",
     children: [
+      {
+        path: "/home",
+        name: "Home",
+        component: () => import("@/views/components/home/index.vue"),
+      },
       {
         path: "/game",
         name: "Game",
@@ -32,6 +42,9 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/components/hole/index.vue"),
       },
     ],
+    meta: {
+      title: "layout",
+    },
   },
   // {
   //   path: "/about",

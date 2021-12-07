@@ -1,0 +1,18 @@
+.ant-menu-overflow,
+.ant-menu,
+.ant-menu-root,
+.ant-menu-horizontal,
+.ant-menu-dark {
+  background: #16a085 !important;
+}
+.ant-layout-header {
+  background: #16a085;
+}
+.ant-menu.ant-menu-dark .ant-menu-item-selected,
+.ant-menu-item-active,
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background-color: #1abc9c;
+}
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover {
+  background-color: #1abc9c;
+}
