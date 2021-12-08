@@ -23,7 +23,9 @@ export default defineComponent({
     const navList = useRouter().options.routes.find(
       (item) => item.meta?.title === "layout"
     )?.children;
-    const selectedKeys = ref([0]);
+    const currentRoute = useRouter().currentRoute.value;
+    const index = navList?.findIndex((val) => val.path === currentRoute.path);
+    const selectedKeys = ref([index]);
     return {
       navList,
       selectedKeys,

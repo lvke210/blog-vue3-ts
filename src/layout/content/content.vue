@@ -14,14 +14,19 @@
       >
         <router-view></router-view>
       </div>
-      <div class="_sider">Sider</div>
+      <Silder />
     </div>
+    <a-back-top>
+      <div class="ant-back-top-inner"><img src="@/assets/1.gif" alt="" /></div>
+    </a-back-top>
   </a-layout-content>
 </template>
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 import { useRouter } from "vue-router";
+import Silder from "./sider.vue";
 export default defineComponent({
+  components: { Silder },
   setup() {
     const routes = useRouter().options.routes.find(
       (item) => item.meta?.title === "layout"
@@ -35,12 +40,8 @@ export default defineComponent({
     };
   },
 });
+// window.onclick = () => {
+//   const audio: HTMLAudioElement | null = document.querySelector("#audio");
+//   audio?.play();
+// };
 </script>
-<style scoped>
-._sider {
-  width: 300px;
-  padding: 24px;
-  background-color: rgb(255, 255, 255);
-  margin-left: 5px;
-}
-</style>

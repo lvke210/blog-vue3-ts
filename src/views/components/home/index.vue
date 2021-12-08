@@ -14,9 +14,6 @@ import { defineComponent } from "vue";
 import Joke from "./joke.vue";
 export default defineComponent({
   components: { Joke },
-  setup() {
-    console.log(1);
-  },
 });
 </script>
 <style scoped>
