@@ -1,6 +1,6 @@
 <template>
   <div id="hole" class="content">
-    <a-textarea rows="3" v-model:value="content"></a-textarea>
+    <a-textarea rows="3" v-model:value="content" class="textarea"></a-textarea>
     <a-button class="btn" type="primary" @click="hdClick">仍进洞里</a-button>
     <div v-for="item in pageData.list" :key="item.id" class="block">
       <div class="flex block-content">
@@ -12,13 +12,15 @@
         </div>
       </div>
       <div class="block-footer">
-        ---{{ formatDate(new Date(item.create_time ?? "")) }}---
+        <span class="delete" @click="delMessage(item.id)">删除</span> ---{{
+          formatDate(new Date(item.create_time ?? ""))
+        }}---
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { addMsg, getMsgList } from "@/api";
+import { addMsg, getMsgList, delMsg } from "@/api";
 import { formatDate } from "@/utils";
 import { message } from "ant-design-vue";
 import { defineComponent, onMounted, reactive, ref } from "vue";
@@ -49,6 +51,13 @@ export default defineComponent({
         message.success("百步穿杨");
       }
     }
+    async function delMessage(id: number) {
+      const { status } = await delMsg(id);
+      if (status === 200) {
+        message.success("我应该在车底，不应该在洞里");
+        getMsg();
+      }
+    }
     onMounted(() => {
       getMsg();
     });
@@ -62,6 +71,7 @@ export default defineComponent({
       content,
       pageData,
       formatDate,
+      delMessage,
     };
   },
 });
@@ -83,6 +93,9 @@ export default defineComponent({
 }
 .block:hover {
   box-shadow: 1px 1px 5px rgb(168, 166, 166);
+}
+.block:hover .delete {
+  display: inline;
 }
 .block .block-content {
   flex: 1;
@@ -108,5 +121,13 @@ export default defineComponent({
   padding: 5px;
   font-size: 12px;
   opacity: 0.8;
+}
+.textarea {
+  opacity: 0.8;
+}
+.delete {
+  cursor: pointer;
+  text-decoration-line: underline;
+  display: none;
 }
 </style>

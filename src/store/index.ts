@@ -1,8 +1,8 @@
 import { createStore } from "vuex";
-
+import basicDate from "./modules/basicDate";
+const modules = {
+  basicDate,
+};
 export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  modules,
 });

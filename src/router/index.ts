@@ -1,8 +1,11 @@
+import { ObjectMap } from "@/utils";
+import { message } from "ant-design-vue";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
+    name: "Login",
     component: () => import("@/views/login/login.vue"),
     meta: {
       title: "login",
@@ -46,20 +49,25 @@ const routes: Array<RouteRecordRaw> = [
       title: "layout",
     },
   },
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  // },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
+//全局前置路由守卫
+router.beforeEach((to, from, next) => {
+  const userInfo = localStorage.getItem("userInfo");
+  if (to.name !== "Login") {
+    if (userInfo) {
+      next();
+    } else {
+      message.info("大兄弟，登陆一下先");
+      console.log(userInfo, router);
+      router.push("/login");
+    }
+  } else {
+    next();
+  }
+});
 export default router;

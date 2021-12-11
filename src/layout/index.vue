@@ -1,7 +1,9 @@
 <template>
   <a-layout>
     <Header />
-    <Content />
+    <keep-alive>
+      <Content />
+    </keep-alive>
     <Footer />
   </a-layout>
 </template>

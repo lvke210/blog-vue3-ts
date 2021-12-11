@@ -7,7 +7,7 @@
         <div id="hat" :class="hidden ? 'hidden' : ''"></div>
       </div>
 
-      <div id="light" @click="drop()">
+      <div id="light" @click="changeTheme()">
         <div id="hat" :class="!hidden ? 'hidden' : ''"></div>
       </div>
     </div>
@@ -20,14 +20,17 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { useStore } from "vuex";
 export default defineComponent({
   setup() {
-    function drop() {
-      hidden.value = !hidden.value;
-    }
     const hidden = ref(false);
+    const store = useStore();
+    function changeTheme() {
+      hidden.value = !hidden.value;
+      store.dispatch("changeTheme", hidden.value);
+    }
     return {
-      drop,
+      changeTheme,
       hidden,
     };
   },
@@ -38,7 +41,6 @@ export default defineComponent({
 ._sider {
   width: 300px;
   padding: 24px;
-  background-color: rgb(255, 255, 255);
   margin-left: 5px;
 }
 ._sider img,

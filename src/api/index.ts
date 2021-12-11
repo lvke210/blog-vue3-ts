@@ -11,4 +11,9 @@ const getMsgList = () => axios.get(URL + "/api/getHoleList");
 //添加留言
 const addMsg = (req: ObjectMap) => axios.post(URL + "/api/addHole", req);
 
-export { getJokeList, addMsg, getMsgList };
+// 删除留言
+const delMsg = (id: number) => axios.get(URL + `/api/delHole?id=${id}`);
+
+const uploadFile = (param: ObjectMap) => axios.post(URL + "/api/profile", param);
+
+export { getJokeList, addMsg, getMsgList, delMsg, uploadFile };

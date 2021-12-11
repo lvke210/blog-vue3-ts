@@ -1,5 +1,5 @@
 <template>
-  <div class="block" v-for="(val, index) in jokeList" :key="index">
+  <div class="block" v-for="(val, index) in jokeList" :key="val">
     <div class="block-title"></div>
     <div class="block-content">
       <div class="block-left">
