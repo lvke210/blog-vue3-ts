@@ -30,7 +30,7 @@
         >
           <a-avatar />
         </a-upload> -->
-        <a-avatar :src="userInfo.avatar" />
+        <a-avatar :src="baseurl + userInfo.avatar" />
         {{ userInfo.name }}</a-popover
       >
     </div>
