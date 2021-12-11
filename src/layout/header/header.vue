@@ -16,7 +16,7 @@
       <a-popover placement="bottom"
         ><template #content>
           <div class="userInfo">
-            <div>个人设置</div>
+            <div @click="showModal">个人设置</div>
             <div @click="showConfirm">退出登陆</div>
           </div>
         </template>
@@ -30,18 +30,22 @@
         >
           <a-avatar />
         </a-upload> -->
-        <a-avatar :src="pageDate.avatar" @click="showModal" />
+        <a-avatar :src="userInfo.avatar" />
         {{ userInfo.name }}</a-popover
       >
     </div>
   </a-layout-header>
   <a-modal
-    title="更换头像"
+    title="个人设置"
+    style="text-align: center"
     v-model:visible="pageDate.visible"
     @cancel="pageDate.visible = false"
     @ok="changeAvatar"
   >
-    <img style="width: 100px" :src="pageDate.avatar_pre" alt="" />
+    <div class="imgBox">
+      <img style="width: 100%" :src="baseurl + pageDate.avatar_pre" alt="" />
+    </div>
+
     <a-upload
       v-model:file-list="fileList"
       name="file"
@@ -53,7 +57,7 @@
   </a-modal>
 </template>
 <script lang="ts">
-import { uploadFile } from "@/api";
+import { uploadFile, userupdate } from "@/api";
 import { ObjectMap } from "@/utils";
 import { message, Modal } from "ant-design-vue";
 import { defineComponent, reactive, ref } from "vue";
@@ -109,12 +113,13 @@ export default defineComponent({
     const fileList = ref([]);
 
     async function customRequest(file: ObjectMap) {
+      console.log(process.env.NODE_ENV, "process.env.NODE_ENV");
       const formData = new FormData();
       formData.append("file", file.file);
       const { data, status } = await uploadFile(formData);
       if (data && status === 200) {
         console.log(data);
-        pageDate.avatar_pre = "http://lvke210.com" + data.data.url;
+        pageDate.avatar_pre = data.data.url;
         console.log(pageDate.avatar_pre);
 
         file.onSuccess();
@@ -125,8 +130,11 @@ export default defineComponent({
     function showModal() {
       pageDate.visible = true;
     }
-    function changeAvatar() {
+    async function changeAvatar() {
       pageDate.avatar = pageDate.avatar_pre;
+      userInfo.avatar = pageDate.avatar_pre;
+      const { data } = await userupdate(userInfo);
+      console.log(data);
       pageDate.visible = false;
     }
     return {
@@ -140,6 +148,7 @@ export default defineComponent({
       handleChange,
       fileList,
       pageDate,
+      baseurl: "http://lvke210.com",
     };
   },
 });
@@ -162,6 +171,10 @@ export default defineComponent({
 .userInfo {
   cursor: pointer;
 }
-.userInfo:hover {
+.imgBox {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(228, 225, 225);
+  margin: 10px auto;
 }
 </style>

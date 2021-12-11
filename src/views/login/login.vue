@@ -5,17 +5,16 @@
         <input placeholder="请输入用户名" required v-model="userInfo.name" />
       </div>
       <div>
-        <input
-          type="password"
-          placeholder="请输入密码"
-          required
-          v-model="userInfo.password"
-        />
+        <input type="password" placeholder="请输入密码" required v-model="userInfo.password" />
       </div>
-      <div><a-button @click="login">登陆</a-button></div>
+      <div>
+        <a-button @click="login">{{ pageDate.isLogin ? "登陆" : "注册" }}</a-button>
+      </div>
       <div class="footer">
         <div>忘记密码</div>
-        <div>注册</div>
+        <div @click="pageDate.isLogin = !pageDate.isLogin">
+          {{ !pageDate.isLogin ? "登陆" : "注册" }}
+        </div>
       </div>
     </form>
   </div>
@@ -23,6 +22,8 @@
   <div class="wrap3"></div>
 </template>
 <script lang="ts">
+import { userLogin, userRegister } from "@/api";
+import { message } from "ant-design-vue";
 import { defineComponent, reactive } from "vue";
 import { useRouter } from "vue-router";
 interface UserInfo {
@@ -31,15 +32,41 @@ interface UserInfo {
 }
 export default defineComponent({
   setup() {
-    const userInfo: UserInfo = reactive({});
+    let userInfo: UserInfo = reactive({ name: "admin", password: "123456" });
+    const pageDate = reactive({
+      isLogin: true,
+    });
     const router = useRouter();
-    function login() {
-      localStorage.setItem("userInfo", JSON.stringify(userInfo));
-      router.push("/home");
+    async function login() {
+      if (!(userInfo.name && userInfo.password)) {
+        return;
+      }
+      if (pageDate.isLogin) {
+        const { data } = await userLogin(userInfo);
+        if (data.status === 0) {
+          userInfo = data.data;
+          localStorage.setItem("token", data.tokenKey);
+          localStorage.setItem("userInfo", JSON.stringify(userInfo));
+          router.push("/home");
+        } else {
+          message.warning(`${data.msg}`);
+        }
+      } else {
+        const { status } = await userRegister(userInfo);
+        if (status === 200) {
+          message.success("注册成功");
+          pageDate.isLogin = true;
+        }
+      }
+
+      // localStorage.setItem("userInfo", JSON.stringify(userInfo));
+      // router.push("/home");
     }
+
     return {
       login,
       userInfo,
+      pageDate,
     };
   },
 });

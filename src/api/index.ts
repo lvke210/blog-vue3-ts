@@ -2,6 +2,14 @@ import { ObjectMap } from "@/utils";
 import axios from "axios";
 const URL2 = "https://autumnfish.cn";
 const URL = "http://127.0.0.1:4320";
+
+// 登陆
+const userLogin = (param: ObjectMap): ObjectMap => axios.post(URL + "/api/login", param);
+//注册
+const userRegister = (param: ObjectMap): ObjectMap => axios.post(URL + "/api/register", param);
+//更新
+const userupdate = (param: ObjectMap): ObjectMap => axios.post(URL + "/api/update", param);
+
 //获取随机笑话
 const getJokeList = () => axios.get(URL2 + `/api/joke`);
 
@@ -16,4 +24,4 @@ const delMsg = (id: number) => axios.get(URL + `/api/delHole?id=${id}`);
 
 const uploadFile = (param: ObjectMap) => axios.post(URL + "/api/profile", param);
 
-export { getJokeList, addMsg, getMsgList, delMsg, uploadFile };
+export { getJokeList, addMsg, getMsgList, delMsg, uploadFile, userLogin, userRegister, userupdate };
