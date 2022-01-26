@@ -1,7 +1,7 @@
 import { ObjectMap } from "@/utils";
 import axios from "axios";
 const URL2 = "https://autumnfish.cn";
-const URL = "http://127.0.0.1:4320";
+const URL = "";
 
 // 登陆
 const userLogin = (param: ObjectMap): ObjectMap => axios.post(URL + "/api/login", param);

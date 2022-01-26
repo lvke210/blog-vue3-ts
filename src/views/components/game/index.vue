@@ -1,6 +1,13 @@
 <template>
+  <Tiger />
   <canvas id="tankCanvas" width="1000" height="600"></canvas>
 </template>
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({});
+</script>
+
 <style scoped>
 #tankCanvas {
   background-color: rgb(146, 135, 135);

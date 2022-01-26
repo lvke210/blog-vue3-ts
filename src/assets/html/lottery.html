@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .lottery_wrap {
+        background-color: rgb(240, 214, 130);
+        display: flex;
+        width: max-content;
+        height: 190px;
+        overflow: hidden;
+      }
+      .box1 {
+        transition: 0.5s;
+      }
+      .lottery_wrap img {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="lottery_wrap">
+      <div class="box1">
+        <img src="../g1.png" />
+        <img src="../g2.png" />
+        <img src="../g3.png" />
+      </div>
+      <div class="box2">
+        <img src="../g1.png" />
+        <img src="../g2.png" />
+        <img src="../g3.png" />
+      </div>
+      <div class="box3">
+        <img src="../g1.png" />
+        <img src="../g2.png" />
+        <img src="../g3.png" />
+      </div>
+    </div>
+    <div onclick="start()">start</div>
+    <script>
+      const box1 = document.querySelector(".box1");
+      const box2 = document.querySelector(".box2");
+      const box3 = document.querySelector(".box3");
+      let startCount = 0; // 抽奖计数器
+      let lock = false; //节流锁 出结果之前点击无效
+      let randomNum; //设置随机中奖图片
+      box1.appendChild(box1.firstElementChild.cloneNode()); // 复制第一个节点到最后  无缝轮播关键
+      box2.appendChild(box2.firstElementChild.cloneNode()); // 复制第一个节点到最后  无缝轮播关键
+      box3.appendChild(box3.firstElementChild.cloneNode()); // 复制第一个节点到最后  无缝轮播关键
+      function start() {
+        if (lock) {
+          return;
+        }
+        lock = true;
+        startCount++;
+        randomNum = Math.round(Math.random() * 2);
+        boxAutoPlay(box1, 100 + parseInt(Math.random() * 100));
+        boxAutoPlay(box2, 100 + parseInt(Math.random() * 100));
+        boxAutoPlay(box3, 100 + parseInt(Math.random() * 100));
+        setTimeout(() => {
+          isWin();
+        }, 3100);
+      }
+      function boxAutoPlay(box, dur) {
+        box.style.transition = "none"; //位置初始化
+        box.style.transform = "translate(0,0%)";
+        let counter = 0;
+        let timer1;
+        clearInterval(timer1);
+        timer1 = setInterval(() => {
+          counter++;
+          box.style.transition = `${dur / 2000}s ease`;
+          if (counter === box.children.length - 1) {
+            setTimeout(() => {
+              box.style.transition = "none";
+              box.style.transform = "translate(0,0%)";
+              counter = 0;
+            }, dur / 2);
+          }
+          box.style.transform = `translate(0,-${counter * 100}%)`;
+        }, dur);
+        setTimeout(() => {
+          lock = false;
+          //调整中奖概率
+          if (startCount % 2 === 0) {
+            box.style.transition = "none";
+            box.style.transform = `translate(0,-${randomNum * 100}%)`; //设置随机图片相同
+          }
+
+          clearInterval(timer1);
+        }, 3000);
+      }
+
+      function isWin() {
+        const transform_distance1 = box1.style.transform;
+        const transform_distance2 = box2.style.transform;
+        const transform_distance3 = box3.style.transform;
+        if (
+          transform_distance1 === transform_distance2 &&
+          transform_distance1 === transform_distance3
+        ) {
+          alert("you win");
+          console.log("you win");
+        }
+      }
+    </script>
+  </body>
+</html>
