@@ -1,5 +1,5 @@
 <template>
-  <a-layout-content :style="{ padding: '0 50px' }" :class="isDark ? 'darkTheme' : ''">
+  <a-layout-content :class="isDark ? 'darkTheme' : ''">
     <a-breadcrumb :style="{ margin: '16px 0' }">
       <!-- <a-breadcrumb-item>{{ curBreak }}</a-breadcrumb-item> -->
     </a-breadcrumb>
@@ -9,6 +9,7 @@
           padding: '24px',
           minHeight: '80vh',
           flex: '1',
+          width: '100%',
         }"
         :class="isDark ? 'darkTheme' : ''"
       >
@@ -50,3 +51,10 @@ export default defineComponent({
 //   audio?.play();
 // };
 </script>
+<style scoped>
+@media screen and (max-width: 480px) {
+  .ant-back-top {
+    right: 50px;
+  }
+}
+</style>

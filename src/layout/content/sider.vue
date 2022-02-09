@@ -38,6 +38,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@media screen and (max-width: 750px) {
+  ._sider {
+    display: none;
+  }
+}
 ._sider {
   width: 300px;
   padding: 24px;

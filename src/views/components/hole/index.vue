@@ -100,12 +100,13 @@ export default defineComponent({
 .block .block-content {
   flex: 1;
 }
+
 .block-title {
   font-size: 20px;
   padding: 5px;
 }
 .block-left {
-  text-align: left;
+  text-align: center;
   padding: 5px;
   margin-top: 10px;
 }

@@ -39,7 +39,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .block {
   margin: 20px 0;
   padding: 5px;
@@ -56,12 +56,17 @@ export default defineComponent({
   display: flex;
   flex: 1;
 }
+@media screen and (max-width: 750px) {
+  .block .block-content {
+    flex-direction: column;
+  }
+}
 .block-title {
   font-size: 20px;
   padding: 5px;
 }
 .block-left {
-  text-align: left;
+  text-align: center;
   padding: 5px;
   margin-top: 10px;
 }

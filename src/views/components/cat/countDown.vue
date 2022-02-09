@@ -1,6 +1,6 @@
 <template>
   <div class="count-down">
-    <div>新年倒计时</div>
+    <div>元旦倒计时</div>
     <span>{{ day }}</span> 天 <span>{{ hour }}</span
     >时 <span>{{ fen }}</span
     >分 <span>{{ sec }}</span
@@ -19,7 +19,7 @@ export default defineComponent({
       sec: "",
     });
     onMounted(() => {
-      const endTime = new Date("2022-2-1").getTime();
+      const endTime = new Date("2023-1-1").getTime();
       setInterval(() => {
         const nowTime = new Date().getTime();
         const cha = endTime - nowTime;

@@ -47,7 +47,7 @@ export default defineComponent({
           userInfo = data.data;
           localStorage.setItem("token", data.tokenKey);
           localStorage.setItem("userInfo", JSON.stringify(userInfo));
-          router.push("/home");
+          router.push("/jokes");
         } else {
           message.warning(`${data.msg}`);
         }

@@ -1,4 +1,3 @@
-import { ObjectMap } from "@/utils";
 import { message } from "ant-design-vue";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
@@ -22,28 +21,33 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "Layout",
     component: () => import("@/layout/index.vue"),
-    redirect: "/home",
+    redirect: "/blog",
     children: [
       {
-        path: "/home",
-        name: "Home",
+        path: "/blog",
+        name: "Blog",
+        component: () => import("@/views/components/blog/index.vue"),
+      },
+      {
+        path: "/jokes",
+        name: "Jokes",
         component: () => import("@/views/components/home/index.vue"),
-      },
-      {
-        path: "/game",
-        name: "Game",
-        component: () => import("@/views/components/game/index.vue"),
-      },
-      {
-        path: "/cat",
-        name: "Cat",
-        component: () => import("@/views/components/cat/index.vue"),
       },
       {
         path: "/hole",
         name: "Hole",
         component: () => import("@/views/components/hole/index.vue"),
       },
+      {
+        path: "/game",
+        name: "Game",
+        component: () => import("@/views/components/game/index.vue"),
+      },
+      // {
+      //   path: "/cat",
+      //   name: "Cat",
+      //   component: () => import("@/views/components/cat/index.vue"),
+      // },
     ],
     meta: {
       title: "layout",

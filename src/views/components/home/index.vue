@@ -44,5 +44,9 @@ export default defineComponent({
   /* width: 36%; */
   width: 50%;
 }
+@media screen and (max-width: 750px) {
+  .wrap {
+    display: none;
+  }
+}
 </style>
->
