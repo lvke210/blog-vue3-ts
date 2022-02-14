@@ -1001,6 +1001,15 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
+"@lucky-canvas/vue@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.npmmirror.com/@lucky-canvas/vue/-/vue-0.1.7.tgz#5d3665bf49795d0b529b3b23364abf9078f6c9af"
+  integrity sha512-XsHBa2Y/kfYprLxxz7pPZAF/R/fRi+Sqr0/QKtpjif4NewyaFGTgmLRaVXex72V305XVgMudQmkJ4Jd3Y77PdQ==
+  dependencies:
+    "@vue/composition-api" "^1.0.0"
+    lucky-canvas "^1.7.19"
+    vue-demi "^0.7.4"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.npm.taobao.org/@mrmlnc/readdir-enhanced/download/@mrmlnc/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -1622,6 +1631,11 @@
     vue-template-es2015-compiler "^1.9.0"
   optionalDependencies:
     prettier "^1.18.2 || ^2.0.0"
+
+"@vue/composition-api@^1.0.0":
+  version "1.4.6"
+  resolved "https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.4.6.tgz#886c35221cd7c6f55272543a121240e8d3a1306c"
+  integrity sha512-UP359OJ0G0Zli603/i9fhXFmNtZUSrypSFyqClMxizp8ezlaMK2GCmHgy3qyrRnO/xjcDAx09vvXPwNFtxHPtQ==
 
 "@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.0.0-beta.18":
   version "6.0.0-beta.20.1"
@@ -5867,6 +5881,11 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
+lucky-canvas@^1.7.19:
+  version "1.7.19"
+  resolved "https://registry.npmmirror.com/lucky-canvas/-/lucky-canvas-1.7.19.tgz#8983bd1739bb9b228768470508ab4e5c84b8df33"
+  integrity sha512-Gh6JZg0mc0ej9eG/UdTxwAY/OV2LsOXOF0XOK1lgCfdhMZM3TSphFi65zGL5lTVbFn9mNhieT6X3f3NNL3ihKg==
+
 magic-string@^0.25.7:
   version "0.25.7"
   resolved "https://registry.npm.taobao.org/magic-string/download/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
@@ -8907,6 +8926,11 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/vm-browserify/download/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha1-eGQcSIuObKkadfUR56OzKobl3aA=
+
+vue-demi@^0.7.4:
+  version "0.7.5"
+  resolved "https://registry.npmmirror.com/vue-demi/-/vue-demi-0.7.5.tgz#88dee7492fc99a0f911ff03fc02c658fa2a79af8"
+  integrity sha512-eFSQSvbQdY7C9ujOzvM6tn7XxwLjn0VQDXQsiYBLBwf28Na+2nTQR4BBBcomhmdP6mmHlBKAwarq6a0BPG87hQ==
 
 vue-eslint-parser@^7.0.0, vue-eslint-parser@^7.10.0:
   version "7.11.0"
