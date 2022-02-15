@@ -5,10 +5,17 @@
         <input placeholder="请输入用户名" required v-model="userInfo.name" />
       </div>
       <div>
-        <input type="password" placeholder="请输入密码" required v-model="userInfo.password" />
+        <input
+          type="password"
+          placeholder="请输入密码"
+          required
+          v-model="userInfo.password"
+        />
       </div>
       <div>
-        <a-button @click="login">{{ pageDate.isLogin ? "登陆" : "注册" }}</a-button>
+        <a-button @click="login">{{
+          pageDate.isLogin ? "登陆" : "注册"
+        }}</a-button>
       </div>
       <div class="footer">
         <div>忘记密码</div>

@@ -3,7 +3,12 @@
   <hr />
   <TodoList />
   <hr />
-  <a-select @change="hdChange" v-model:value="curSelect" style="width: 120px" :options="data">
+  <a-select
+    @change="hdChange"
+    v-model:value="curSelect"
+    style="width: 120px"
+    :options="data"
+  >
   </a-select>
   <hr />
   <CountDown />

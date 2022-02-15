@@ -40,7 +40,7 @@
 </template>
 <script lang="ts">
 import { message } from "ant-design-vue";
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
