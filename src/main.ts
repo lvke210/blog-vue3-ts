@@ -6,9 +6,4 @@ import "ant-design-vue/dist/antd.css";
 import Antd from "ant-design-vue";
 import "@/style/index.css";
 import VueLuckyCanvas from "@lucky-canvas/vue";
-createApp(App)
-  .use(Antd)
-  .use(store)
-  .use(router)
-  .use(VueLuckyCanvas)
-  .mount("#app");
+createApp(App).use(Antd).use(store).use(router).use(VueLuckyCanvas).mount("#app");

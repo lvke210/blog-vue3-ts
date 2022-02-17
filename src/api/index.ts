@@ -4,14 +4,11 @@ const URL2 = "https://autumnfish.cn";
 const URL = "";
 
 // 登陆
-const userLogin = (param: ObjectMap): ObjectMap =>
-  axios.post(URL + "/api/login", param);
+const userLogin = (param: ObjectMap): ObjectMap => axios.post(URL + "/api/login", param);
 //注册
-const userRegister = (param: ObjectMap): ObjectMap =>
-  axios.post(URL + "/api/register", param);
+const userRegister = (param: ObjectMap): ObjectMap => axios.post(URL + "/api/register", param);
 //更新
-const userupdate = (param: ObjectMap): ObjectMap =>
-  axios.post(URL + "/api/update", param);
+const userupdate = (param: ObjectMap): ObjectMap => axios.post(URL + "/api/update", param);
 
 //获取随机笑话
 const getJokeList = () => axios.get(URL2 + `/api/joke`);
@@ -25,8 +22,10 @@ const addMsg = (req: ObjectMap) => axios.post(URL + "/api/addHole", req);
 // 删除留言
 const delMsg = (id: number) => axios.get(URL + `/api/delHole?id=${id}`);
 
-const uploadFile = (param: ObjectMap) =>
-  axios.post(URL + "/api/profile", param);
+//获取博客列表
+const getArticleList = () => axios.get("/api/getArticleList");
+
+const uploadFile = (param: ObjectMap) => axios.post(URL + "/api/profile", param);
 
 export {
   getJokeList,
@@ -37,4 +36,5 @@ export {
   userLogin,
   userRegister,
   userupdate,
+  getArticleList,
 };

@@ -29,6 +29,14 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/components/blog/index.vue"),
       },
       {
+        path: "/blog/detail/:id",
+        name: "Detail",
+        component: () => import("@/views/components/blog/detail.vue"),
+        meta: {
+          notShow: true,
+        },
+      },
+      {
         path: "/jokes",
         name: "Jokes",
         component: () => import("@/views/components/home/index.vue"),
