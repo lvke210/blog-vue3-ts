@@ -1,7 +1,7 @@
 <template>
   <!-- <Editor height="200" /> -->
   <div class="container">
-    <a-list :data-source="data">
+    <a-list :data-source="data" :pagination="pagination">
       <template #renderItem="{ item }">
         <router-link :to="`/blog/detail/${item.id}`">
           <a-card style="cursor: pointer">
@@ -16,6 +16,9 @@
                 </pre> -->
                 </template>
               </a-list-item-meta>
+              <div class="block-footer">
+                ---{{ item.create_time ? formatDate(new Date(item.create_time ?? "")) : "" }}---
+              </div>
             </a-list-item>
           </a-card>
         </router-link>
@@ -25,24 +28,27 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
-import { useRouter } from "vue-router";
 import { getArticleList } from "../../../api";
-// import Editor from "@/components/wangEditor/index.vue";
+import { formatDate } from "../../../utils";
 export default defineComponent({
-  // components: { Editor },
-
   setup() {
     const state = reactive({
       data: [],
     });
-    const router = useRouter();
+    const pagination = {
+      // onChange: (page: number) => {
+      //   console.log(page);
+      // },
+      pageSize: 5,
+    };
     onMounted(async () => {
       const { data } = await getArticleList();
       state.data = data.data;
-      console.log(state, "state");
     });
 
     return {
+      formatDate,
+      pagination,
       ...toRefs(state),
     };
   },

@@ -11,11 +11,7 @@
           {{ item.content }}
         </div>
       </div>
-      <div class="block-footer">
-        <span class="delete" @click="delMessage(item.id)">删除</span> ---{{
-          formatDate(new Date(item.create_time ?? ""))
-        }}---
-      </div>
+      <div class="block-footer">---{{ formatDate(new Date(item.create_time ?? "")) }}---</div>
     </div>
   </div>
 </template>
@@ -51,13 +47,7 @@ export default defineComponent({
         message.success("百步穿杨");
       }
     }
-    async function delMessage(id: number) {
-      const { status } = await delMsg(id);
-      if (status === 200) {
-        message.success("我应该在车底，不应该在洞里");
-        getMsg();
-      }
-    }
+
     onMounted(() => {
       getMsg();
     });
@@ -71,7 +61,6 @@ export default defineComponent({
       content,
       pageData,
       formatDate,
-      delMessage,
     };
   },
 });
