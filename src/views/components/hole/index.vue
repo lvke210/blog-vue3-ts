@@ -20,8 +20,8 @@
   </div>
 </template>
 <script lang="ts">
-import { addMsg, getMsgList, delMsg } from "@/api";
-import { formatDate } from "@/utils";
+import { addMsg, getMsgList, delMsg } from "../../../api";
+import { formatDate } from "../../../utils";
 import { message } from "ant-design-vue";
 import { defineComponent, onMounted, reactive, ref } from "vue";
 interface List {
