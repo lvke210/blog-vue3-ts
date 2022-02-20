@@ -26,12 +26,12 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/blog",
         name: "Blog",
-        component: () => import("@/views/components/blog/index.vue"),
+        component: () => import("@/views/blog/index.vue"),
       },
       {
         path: "/blog/detail/:id",
         name: "Detail",
-        component: () => import("@/views/components/blog/detail.vue"),
+        component: () => import("@/views/blog/detail.vue"),
         meta: {
           notShow: true,
         },
@@ -39,22 +39,27 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/jokes",
         name: "Jokes",
-        component: () => import("@/views/components/home/index.vue"),
+        component: () => import("@/views/home/index.vue"),
       },
       {
         path: "/hole",
         name: "Hole",
-        component: () => import("@/views/components/hole/index.vue"),
+        component: () => import("@/views/hole/index.vue"),
+      },
+      {
+        path: "/webs",
+        name: "Webs",
+        component: () => import("@/views/pages/webs.vue"),
       },
       {
         path: "/game",
         name: "Game",
-        component: () => import("@/views/components/game/index.vue"),
+        component: () => import("@/views/game/index.vue"),
       },
       // {
       //   path: "/cat",
       //   name: "Cat",
-      //   component: () => import("@/views/components/cat/index.vue"),
+      //   component: () => import("@/views/cat/index.vue"),
       // },
     ],
     meta: {

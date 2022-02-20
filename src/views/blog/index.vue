@@ -28,8 +28,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
-import { getArticleList } from "../../../api";
-import { formatDate } from "../../../utils";
+import { getArticleList } from "../../api";
+import { formatDate } from "../../utils";
 export default defineComponent({
   setup() {
     const state = reactive({

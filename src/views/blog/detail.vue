@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs, onMounted } from "vue";
 
-import { getArticleList } from "../../../api";
+import { getArticleList } from "../../api";
 
 export default defineComponent({
   setup() {
