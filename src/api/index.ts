@@ -23,7 +23,12 @@ const addMsg = (req: ObjectMap) => axios.post(URL + "/api/addHole", req);
 const delMsg = (id: number) => axios.get(URL + `/api/delHole?id=${id}`);
 
 //获取博客列表
-const getArticleList = () => axios.get("/api/getArticleList");
+const getArticleList = () =>
+  axios.get("/api/getArticleList", {
+    headers: {
+      "Cache-Control": "max-age=300",
+    },
+  });
 
 const uploadFile = (param: ObjectMap) => axios.post(URL + "/api/profile", param);
 

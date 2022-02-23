@@ -9,6 +9,7 @@ module.exports = {
     historyApiFallback: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
+      "Cache-Control": "max-age=300",
     },
     overlay: {
       warnings: false,
