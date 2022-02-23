@@ -1,5 +1,5 @@
 import { ObjectMap } from "@/utils";
-import axios from "axios";
+import axios from "../http/index.js";
 const URL2 = "https://autumnfish.cn";
 const URL = "";
 

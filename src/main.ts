@@ -5,5 +5,5 @@ import store from "./store";
 import "ant-design-vue/dist/antd.css";
 import Antd from "ant-design-vue";
 import "@/style/index.css";
-import VueLuckyCanvas from "@lucky-canvas/vue";
+import VueLuckyCanvas from "@lucky-canvas/vue"; //抽奖插件
 createApp(App).use(Antd).use(store).use(router).use(VueLuckyCanvas).mount("#app");

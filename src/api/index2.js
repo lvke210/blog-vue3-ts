@@ -34,9 +34,9 @@ axios.interceptors.response.use(
   (response) => {
     //对响应数据做操作
     if (response.headers["content-type"].indexOf("application/json") > -1) {
-      if (parseInt(response.data.meta.status, 10) == 0) {
+      if (response.status == 0) {
         return response;
-      } else if (parseInt(response.data.meta.status, 10) == 1) {
+      } else if (response.status == 1) {
         // iView.Message.error(response.data.meta.message);
         return response;
         // } else if (response.data.meta.status == 9) {
