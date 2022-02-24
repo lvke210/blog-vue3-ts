@@ -52,7 +52,7 @@ export default defineComponent({
       getMsg();
     });
     function getMsg() {
-      getMsgList().then((res) => {
+      getMsgList().then((res: any) => {
         pageData.list = res.data.data;
       });
     }
