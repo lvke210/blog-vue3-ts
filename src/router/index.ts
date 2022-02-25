@@ -21,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "Layout",
     component: () => import("@/layout/index.vue"),
-    redirect: "/blog",
+    redirect: "/resume",
     children: [
       {
         path: "/blog",
@@ -36,6 +36,7 @@ const routes: Array<RouteRecordRaw> = [
           notShow: true,
         },
       },
+
       {
         path: "/jokes",
         name: "Jokes",
@@ -55,6 +56,14 @@ const routes: Array<RouteRecordRaw> = [
         path: "/game",
         name: "Game",
         component: () => import("@/views/game/index.vue"),
+      },
+      {
+        path: "/resume",
+        name: "Resume",
+        component: () => import("@/views/resume/index.vue"),
+        // meta: {
+        //   notShow: true,
+        // },
       },
       // {
       //   path: "/cat",

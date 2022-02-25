@@ -3,11 +3,10 @@
     <a-breadcrumb :style="{ margin: '16px 0' }">
       <!-- <a-breadcrumb-item>{{ curBreak }}</a-breadcrumb-item> -->
     </a-breadcrumb>
-    <div style="display: flex">
+    <div style="display: flex" class="content_wrap">
       <div
         :style="{
           padding: '24px',
-          minHeight: '80vh',
           flex: '1',
           width: '100%',
         }"
@@ -52,6 +51,10 @@ export default defineComponent({
 // };
 </script>
 <style scoped>
+.content_wrap::-webkit-scrollbar {
+  width: 0 !important;
+}
+
 @media screen and (max-width: 480px) {
   .ant-back-top {
     right: 50px;
