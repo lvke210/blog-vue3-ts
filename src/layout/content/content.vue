@@ -21,30 +21,21 @@
     </a-back-top>
   </a-layout-content>
 </template>
-<script lang="ts">
-import { computed, defineComponent } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 import { useRouter } from "vue-router";
-import { useStore } from "vuex";
 import Silder from "./sider.vue";
-export default defineComponent({
-  components: { Silder },
-  setup() {
-    const isDark = computed(() => {
-      return useStore().state.basicDate.isDark;
-    });
-    const routes = useRouter().options.routes.find(
-      (item) => item.meta?.title === "layout"
-    )?.children;
-    const curBreak = computed(() => {
-      return useRouter().currentRoute.value.name;
-    });
-    return {
-      isDark,
-      routes,
-      curBreak,
-    };
-  },
+import { store as useStore } from "@/store";
+const isDark = computed(() => {
+  return useStore().isDark;
 });
+const routes = useRouter().options.routes.find(
+  (item) => item.meta?.title === "layout"
+)?.children;
+const curBreak = computed(() => {
+  return useRouter().currentRoute.value.name;
+});
+
 // window.onclick = () => {
 //   const audio: HTMLAudioElement | null = document.querySelector("#audio");
 //   audio?.play();

@@ -22,7 +22,9 @@ export default defineComponent({
       const index = Number(window.location.href.split("/").pop());
 
       const { data } = await getArticleList();
-      state.blogData = data.data.find((item: { id: number }) => item.id === index);
+      state.blogData = data.data.find(
+        (item: { id: number }) => item.id === index
+      );
       console.log(index, "index", state.blogData);
     });
     return {

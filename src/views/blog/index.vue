@@ -17,7 +17,11 @@
                 </template>
               </a-list-item-meta>
               <div class="block-footer">
-                ---{{ item.create_time ? formatDate(new Date(item.create_time ?? "")) : "" }}---
+                ---{{
+                  item.create_time
+                    ? formatDate(new Date(item.create_time ?? ""))
+                    : ""
+                }}---
               </div>
             </a-list-item>
           </a-card>

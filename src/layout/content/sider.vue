@@ -20,14 +20,14 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { useStore } from "vuex";
+import { store as useStore } from "@/store";
 export default defineComponent({
   setup() {
     const hidden = ref(false);
     const store = useStore();
     function changeTheme() {
       hidden.value = !hidden.value;
-      store.dispatch("changeTheme", hidden.value);
+      store.isDark = hidden.value;
     }
     return {
       changeTheme,

@@ -11,7 +11,9 @@
           {{ item.content }}
         </div>
       </div>
-      <div class="block-footer">---{{ formatDate(new Date(item.create_time ?? "")) }}---</div>
+      <div class="block-footer">
+        ---{{ formatDate(new Date(item.create_time ?? "")) }}---
+      </div>
     </div>
   </div>
 </template>
