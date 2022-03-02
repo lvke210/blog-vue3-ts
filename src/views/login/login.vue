@@ -5,17 +5,10 @@
         <input placeholder="请输入用户名" required v-model="userInfo.name" />
       </div>
       <div>
-        <input
-          type="password"
-          placeholder="请输入密码"
-          required
-          v-model="userInfo.password"
-        />
+        <input type="password" placeholder="请输入密码" required v-model="userInfo.password" />
       </div>
       <div>
-        <a-button @click="login">{{
-          pageDate.isLogin ? "登陆" : "注册"
-        }}</a-button>
+        <a-button @click="login">{{ pageDate.isLogin ? "登陆" : "注册" }}</a-button>
       </div>
       <div class="footer">
         <div>忘记密码</div>
@@ -33,6 +26,7 @@ import { userLogin, userRegister } from "@/api";
 import { message } from "ant-design-vue";
 import { defineComponent, reactive } from "vue";
 import { useRouter } from "vue-router";
+import { store } from "@/store";
 interface UserInfo {
   name?: string;
   password?: string;
@@ -51,6 +45,8 @@ export default defineComponent({
       if (pageDate.isLogin) {
         const { data } = await userLogin(userInfo);
         if (data.status === 0) {
+          data.data["tokenKey"] = data.tokenKey;
+          store().user = data.data;
           userInfo = data.data;
           localStorage.setItem("token", data.tokenKey);
           localStorage.setItem("userInfo", JSON.stringify(userInfo));

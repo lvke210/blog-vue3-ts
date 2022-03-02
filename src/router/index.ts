@@ -1,6 +1,7 @@
 import { message } from "ant-design-vue";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-
+import { store as userStore } from "@/store";
+import { isEmpty } from "ramda";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
@@ -84,13 +85,16 @@ const router = createRouter({
 //全局前置路由守卫
 router.beforeEach((to, from, next) => {
   const userInfo = localStorage.getItem("userInfo");
+  // const store = userStore();
+  // const userInfo = store.user;
+  console.log(!isEmpty(userInfo), "beforeEach");
   if (to.name !== "Login") {
-    if (userInfo) {
+    if (!isEmpty(userInfo)) {
       next();
     } else {
       message.info("大兄弟，登陆一下先");
       console.log(userInfo, router);
-      router.push("/login");
+      router.push("/blog");
     }
   } else {
     next();

@@ -1,9 +1,6 @@
 <template>
   <div class="title">天地逆旅 光阴过客</div>
-  <a-layout-header
-    style="z-index: 1; width: 100%; display: flex"
-    class="flex-sb header"
-  >
+  <a-layout-header style="z-index: 1; width: 100%; display: flex" class="flex-sb header">
     <a-menu
       v-model:selectedKeys="selectedKeys"
       defaultSelectedKeys="1"
@@ -59,12 +56,13 @@
     </a-upload>
   </a-modal>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import { uploadFile, userupdate } from "@/api";
 import { ObjectMap } from "@/utils";
 import { message, Modal } from "ant-design-vue";
-import { defineComponent, reactive, ref } from "vue";
+import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
+import { store as useStore } from "@/store";
 interface FileItem {
   uid: string;
   name?: string;
@@ -76,88 +74,73 @@ interface FileInfo {
   file: FileItem;
   fileList: FileItem[];
 }
-export default defineComponent({
-  setup() {
-    const router = useRouter();
-    const navList = router.options.routes
-      .find((item) => item.meta?.title === "layout")
-      ?.children?.filter((item) => {
-        return item.meta?.notShow !== true;
-      });
 
-    console.log(router, navList, "fqr4qt");
-    const currentRoute = router.currentRoute.value;
-    const index = navList?.findIndex((val) => val.path === currentRoute.path);
-    const selectedKeys = ref([index]);
-    const userInfo = JSON.parse(localStorage.getItem("userInfo") ?? "");
-    const pageDate: any = reactive({
-      visible: false,
-      avatar_pre: "",
-      avatar: "",
-    });
-    function logout() {
-      localStorage.removeItem("userInfo");
-      message.success("退出登陆");
-      router.push("/login");
-    }
-    const showConfirm = () => {
-      Modal.confirm({
-        title: "确定要退出吗?",
-        onOk() {
-          logout();
-        },
-        onCancel() {
-          console.log("Cancel");
-        },
-        class: "test",
-      });
-    };
-    const handleChange = (info: FileInfo) => {
-      if (info.file.status === "done") {
-        message.success(`${info.file.name} 上传成功`);
-      } else if (info.file.status === "error") {
-        message.error(`${info.file.name} 上传失败`);
-      }
-    };
-    const fileList = ref([]);
+const router = useRouter();
+const navList = router.options.routes
+  .find((item) => item.meta?.title === "layout")
+  ?.children?.filter((item) => {
+    return item.meta?.notShow !== true;
+  });
 
-    async function customRequest(file: ObjectMap) {
-      const formData = new FormData();
-      formData.append("file", file.file);
-      const { data, status } = await uploadFile(formData);
-      if (data && status === 200) {
-        pageDate.avatar_pre = data.data.url;
-
-        file.onSuccess();
-      } else {
-        file.onError();
-      }
-    }
-    function showModal() {
-      pageDate.visible = true;
-    }
-    async function changeAvatar() {
-      pageDate.avatar = pageDate.avatar_pre;
-      userInfo.avatar = pageDate.avatar_pre;
-      const { data } = await userupdate(userInfo);
-      console.log(data);
-      pageDate.visible = false;
-    }
-    return {
-      showModal,
-      changeAvatar,
-      showConfirm,
-      userInfo,
-      navList,
-      selectedKeys,
-      customRequest,
-      handleChange,
-      fileList,
-      pageDate,
-      baseurl: "http://lvke210.com",
-    };
-  },
+const currentRoute = router.currentRoute.value;
+const index = navList?.findIndex((val) => val.path === currentRoute.path);
+const selectedKeys = ref([index]);
+// const store = useStore();
+// const userInfo: any = store.user;
+const userInfo = JSON.parse(localStorage.getItem("userInfo") ?? "");
+const pageDate: any = reactive({
+  visible: false,
+  avatar_pre: "",
+  avatar: "",
 });
+function logout() {
+  localStorage.removeItem("userInfo");
+  message.success("退出登陆");
+  router.push("/login");
+}
+const showConfirm = () => {
+  Modal.confirm({
+    title: "确定要退出吗?",
+    onOk() {
+      logout();
+    },
+    onCancel() {
+      console.log("Cancel");
+    },
+    class: "test",
+  });
+};
+const handleChange = (info: any) => {
+  if (info.file.status === "done") {
+    message.success(`${info.file.name} 上传成功`);
+  } else if (info.file.status === "error") {
+    message.error(`${info.file.name} 上传失败`);
+  }
+};
+const fileList = ref([]);
+
+async function customRequest(file: ObjectMap) {
+  const formData = new FormData();
+  formData.append("file", file.file);
+  const { data, status } = await uploadFile(formData);
+  if (data && status === 200) {
+    pageDate.avatar_pre = data.data.url;
+
+    file.onSuccess();
+  } else {
+    file.onError();
+  }
+}
+function showModal() {
+  pageDate.visible = true;
+}
+async function changeAvatar() {
+  pageDate.avatar = pageDate.avatar_pre;
+  userInfo.avatar = pageDate.avatar_pre;
+  const { data } = await userupdate(userInfo);
+  pageDate.visible = false;
+}
+const baseurl = "http://lvke210.com";
 </script>
 <style scoped>
 .logo {
