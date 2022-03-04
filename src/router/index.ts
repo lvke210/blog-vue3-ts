@@ -67,6 +67,11 @@ const routes: Array<RouteRecordRaw> = [
             name: "Timer",
             component: () => import("@/views/game/timer.vue"),
           },
+          {
+            path: "/game/star",
+            name: "Star",
+            component: () => import("@/views/game/star.vue"),
+          },
         ],
       },
       {
