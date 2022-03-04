@@ -55,6 +55,19 @@ const routes: Array<RouteRecordRaw> = [
         path: "/game",
         name: "Game",
         component: () => import("@/views/game/index.vue"),
+        redirect: "/game/wheel",
+        children: [
+          {
+            path: "/game/wheel",
+            name: "Wheel",
+            component: () => import("@/views/game/wheel.vue"),
+          },
+          {
+            path: "/game/timer",
+            name: "Timer",
+            component: () => import("@/views/game/timer.vue"),
+          },
+        ],
       },
       {
         path: "/resume",

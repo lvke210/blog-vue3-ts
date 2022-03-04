@@ -1,16 +1,10 @@
-export type ObjectMap<
-  Key extends string | number | symbol = any,
-  Value = any
-> = {
+export type ObjectMap<Key extends string | number | symbol = any, Value = any> = {
   [key in Key]: Value;
 };
 
 export const isBottom = (distance: number): boolean => {
   // 滚动过的距离
-  const scrollTop = Math.max(
-    document.body.scrollTop,
-    document.documentElement.scrollTop
-  );
+  const scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
   //窗口高度
   const windowHeight =
     document.compatMode == "CSS1Compat"
@@ -32,10 +26,7 @@ export interface DebouncedFunc<T extends (...args: any[]) => any> {
   (...args: Parameters<T>): ReturnType<T> | undefined;
 }
 
-export function throttle<T extends (...args: any) => any>(
-  func: T,
-  wait = 500
-): DebouncedFunc<T> {
+export function throttle<T extends (...args: any) => any>(func: T, wait = 500): DebouncedFunc<T> {
   let leading = true;
   return function (this: void, ...args: Array<any>) {
     if (!leading) {
@@ -48,10 +39,7 @@ export function throttle<T extends (...args: any) => any>(
     return func.apply(this, args);
   };
 }
-export function debounce<T extends (...args: any) => any>(
-  func: T,
-  wait = 500
-): any {
+export function debounce<T extends (...args: any) => any>(func: T, wait = 500): any {
   let index: number | undefined;
   return function (this: void, ...args: Array<any>) {
     if (index) {
@@ -65,15 +53,9 @@ export function debounce<T extends (...args: any) => any>(
 }
 
 // 原生js时间格式化
-export const formatDate = function formatDate(
-  date: any,
-  fmt = "yyyy-MM-dd hh:mm:ss"
-) {
+export const formatDate = function formatDate(date: any, fmt = "yyyy-MM-dd hh:mm:ss") {
   if (/(y+)/.test(fmt)) {
-    fmt = fmt.replace(
-      RegExp.$1,
-      (date.getFullYear() + "").substr(4 - RegExp.$1.length)
-    );
+    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
   }
   const o: any = {
     "M+": date.getMonth() + 1,
@@ -85,10 +67,7 @@ export const formatDate = function formatDate(
   Object.keys(o).forEach((k: string) => {
     if (new RegExp(`(${k})`).test(fmt)) {
       const str = o[k] + "";
-      fmt = fmt.replace(
-        RegExp.$1,
-        RegExp.$1.length === 1 ? str : padLeftZero(str)
-      );
+      fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? str : padLeftZero(str));
     }
   });
   return fmt;
@@ -101,4 +80,19 @@ export function getToken() {
 }
 export function removeToken() {
   localStorage.removeItem("token");
+}
+
+/**
+ * 倒计时
+ * @returns
+ */
+export function getCountDown(start: string | number | Date = "", end: string | number | Date) {
+  const endTime = new Date(end).getTime(); // 结束时间（时间戳
+  const nowTime = start ? new Date(start).getTime() : new Date().getTime(); // 现在的时间
+  const cha = endTime - nowTime; // 时间戳的差值
+  const day = Math.floor(cha / 1000 / 60 / 60 / 24);
+  const hour = Math.floor((cha / 1000 / 60 / 60) % 24);
+  const fen = Math.floor((cha / 1000 / 60) % 60);
+  const sec = Math.floor((cha / 1000) % 60);
+  return `${day}天${hour}时${fen}分${sec}秒`;
 }
