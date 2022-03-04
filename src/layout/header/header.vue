@@ -87,7 +87,9 @@ const index = navList?.findIndex((val) => val.path === currentRoute.path);
 const selectedKeys = ref([index]);
 // const store = useStore();
 // const userInfo: any = store.user;
-const userInfo = JSON.parse(localStorage.getItem("userInfo") ?? "");
+const userInfo = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo") ?? "")
+  : null;
 const pageDate: any = reactive({
   visible: false,
   avatar_pre: "",

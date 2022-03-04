@@ -1,14 +1,17 @@
 <template>
+  <input type="text" ref="iptref" value="432432" />
+  <button @click="hdclick">click</button>
   <WheelLucky />
   <canvas id="tankCanvas" width="1000" height="600"></canvas>
 </template>
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
 import WheelLucky from "./wheel.vue";
-
-export default defineComponent({
-  components: { WheelLucky },
-});
+import { ref } from "vue";
+const iptref = ref<any>();
+console.log(iptref.value, "iptref");
+function hdclick() {
+  console.log(iptref.value, "iptref");
+}
 </script>
 
 <style scoped>
