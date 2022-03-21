@@ -3,7 +3,9 @@
     <div class="game-nav">
       <a-menu v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys">
         <a-menu-item v-for="item in navList" :key="item.name">
-          <router-link :to="item.path" class="nav-item">{{ item.name }}</router-link>
+          <router-link :to="item.path" class="nav-item">{{
+            item.name
+          }}</router-link>
         </a-menu-item>
       </a-menu>
     </div>

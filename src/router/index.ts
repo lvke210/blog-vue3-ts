@@ -72,6 +72,11 @@ const routes: Array<RouteRecordRaw> = [
             name: "Star",
             component: () => import("@/views/game/star.vue"),
           },
+          {
+            path: "/game/print",
+            name: "Print",
+            component: () => import("@/views/game/print.vue"),
+          },
         ],
       },
       {

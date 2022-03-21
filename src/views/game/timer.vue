@@ -13,9 +13,15 @@
   </div>
   <h1>倒计时</h1>
   <div>
-    <a-date-picker show-time placeholder="Select Time" @change="countDownChange" />
+    <a-date-picker
+      show-time
+      placeholder="Select Time"
+      @change="countDownChange"
+    />
   </div>
-  <div style="margin-left: 10px; line-height: 2em; font-size: 5em">{{ countDown }}</div>
+  <div style="margin-left: 10px; line-height: 2em; font-size: 5em">
+    {{ countDown }}
+  </div>
 </template>
 <script setup lang="ts">
 import { getCountDown } from "@/utils";

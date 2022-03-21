@@ -1,6 +1,9 @@
 <template>
   <div class="title">天地逆旅 光阴过客</div>
-  <a-layout-header style="z-index: 1; width: 100%; display: flex" class="flex-sb header">
+  <a-layout-header
+    style="z-index: 1; width: 100%; display: flex"
+    class="flex-sb header"
+  >
     <a-menu
       v-model:selectedKeys="selectedKeys"
       defaultSelectedKeys="1"
