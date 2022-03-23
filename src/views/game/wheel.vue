@@ -1,4 +1,5 @@
 <template>
+  <Lvke :data="lvkearr" :bar="prizes" @testChnge="hdLvkeChange" />
   <span>每天一次？</span>
   <a-switch
     v-model:checked="isOnce"
@@ -44,6 +45,7 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
+    const lvkearr = ["zhangsan", "lisi", "wangwu"];
     const myLucky = ref(null as any);
     let isOnce = ref(true);
     const state = {
@@ -111,12 +113,17 @@ export default defineComponent({
     function onChange() {
       console.log(isOnce.value);
     }
+    function hdLvkeChange(value: string) {
+      console.log("实际使用的地方", value);
+    }
     return {
+      hdLvkeChange,
       startCallback,
       endCallback,
       myLucky,
       onChange,
       isOnce,
+      lvkearr,
       ...state,
     };
   },

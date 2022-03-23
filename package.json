@@ -5,13 +5,16 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint --fix"
+    "lint": "vue-cli-service lint --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@lucky-canvas/vue": "^0.1.7",
     "ant-design-vue": "^3.0.0-alpha.14",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
     "pinia": "^2.0.11",
     "ramda": "^0.28.0",
     "vue": "^3.0.0",
@@ -19,6 +22,8 @@
     "wangeditor": "^4.7.11"
   },
   "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -35,5 +40,11 @@
     "eslint-plugin-vue": "^7.0.0",
     "prettier": "^2.2.1",
     "typescript": "~4.1.5"
+  },
+  "lint-staged": {
+    "*.{tsx,ts,js}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

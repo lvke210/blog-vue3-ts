@@ -1,4 +1,5 @@
 <template>
+  <Lvke :data="lvkearr" />
   <h3>时间计算器</h3>
   <div style="display: flex">
     <div>
@@ -13,11 +14,7 @@
   </div>
   <h1>倒计时</h1>
   <div>
-    <a-date-picker
-      show-time
-      placeholder="Select Time"
-      @change="countDownChange"
-    />
+    <a-date-picker show-time placeholder="Select Time" @change="countDownChange" />
   </div>
   <div style="margin-left: 10px; line-height: 2em; font-size: 5em">
     {{ countDown }}
@@ -26,6 +23,7 @@
 <script setup lang="ts">
 import { getCountDown } from "@/utils";
 import { ref } from "vue";
+const lvkearr = ["zhangsan", "lisi", "wangwu"];
 let result = ref<string | undefined>(undefined);
 let countDown = ref<string | undefined>(undefined);
 function onRangeOk(values: any) {
